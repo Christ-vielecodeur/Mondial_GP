@@ -3,12 +3,16 @@ import 'package:mondial_gp_test/app/views/welcome.dart';
 import 'package:mondial_gp_test/app/views/accueil.dart ';
 import 'package:mondial_gp_test/app/Modules/details/detailsPage.dart';
 import 'package:mondial_gp_test/app/Modules/QrCode/qrcodes.dart';
+import 'package:mondial_gp_test/app/Modules/details/detailsPage2.dart';
+import 'package:mondial_gp_test/app/Modules/details/changerStatut.dart';
 
 class Routes {
   static const String welcome = '/welcome';
   static const String accueil = '/accueil';
   static const String details = '/details';
+  static const String details2 = '/details2';
   static const String qrcode = '/qrcode';
+  static const String changerStatut = '/changerStatut';
 
   static final main = [
     GetPage(
@@ -23,13 +27,23 @@ class Routes {
     ),
     GetPage(
       name: details,
-      page: () => DetailpageWidget(),
+      page: () => DetailPage(),
+      transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: details2,
+      page: () => Dtail2Pages(),
       transition: Transition.fadeIn,
     ),
     GetPage(
       name: qrcode,
       page: () => QrcodeWidget(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: changerStatut,
+      page: () => StatusSelectionWidget(currentStatus: "En préparation"),
+      transition: Transition.downToUp,
     ),
   ];
 }

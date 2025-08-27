@@ -16,6 +16,7 @@ class QrcodeWidget extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Color.fromRGBO(0, 15, 62, 1)),
           onPressed: () => Navigator.pop(context),
@@ -77,6 +78,35 @@ class QrcodeWidget extends StatelessWidget {
             }),
           ],
         ),
+      ),
+    );
+  }
+
+  // Méthode pour créer la barre de statut iOS
+  Widget _buildIOSStatusBar() {
+    return Container(
+      height: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '9:41',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+          ),
+          Row(
+            children: [
+              Icon(Icons.signal_cellular_4_bar, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.wifi, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.battery_full, size: 14),
+            ],
+          ),
+        ],
       ),
     );
   }

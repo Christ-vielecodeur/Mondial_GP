@@ -383,7 +383,7 @@ class _HomePageState extends State<HomePage>
               width: double.infinity,
               child: FilledButton(
                 onPressed: () {
-                  Get.to(() => DetailpageWidget());
+                  Get.to(() => DetailPage());
                 },
                 style: FilledButton.styleFrom(
                   backgroundColor: primary,

@@ -3,9 +3,10 @@ import 'package:get/get.dart';
 import 'package:mondial_gp_test/app/Modules/annonces/controllers.dart';
 import 'package:mondial_gp_test/app/Modules/annonces/models.dart';
 import 'package:mondial_gp_test/app/Modules/QrCode/qrcodes.dart';
+import 'package:mondial_gp_test/app/Modules/details/detailsPage2.dart';
 
-class DetailpageWidget extends StatelessWidget {
-  const DetailpageWidget({Key? key}) : super(key: key);
+class DetailPage extends StatelessWidget {
+  const DetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,10 @@ class DetailpageWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                child: _buildIOSStatusBar(),
+              ),
               _buildAppBar(),
               SizedBox(height: 16),
               _buildMainCard(announcement, announcementIndex),
@@ -36,6 +41,35 @@ class DetailpageWidget extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  // Méthode pour créer la barre de statut iOS
+  Widget _buildIOSStatusBar() {
+    return Container(
+      height: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '9:41',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+          ),
+          Row(
+            children: [
+              Icon(Icons.signal_cellular_4_bar, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.wifi, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.battery_full, size: 14),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -503,7 +537,9 @@ class DetailpageWidget extends StatelessWidget {
 
   Widget _buildTrackingButton() {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Get.to(() => Dtail2Pages());
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: Color.fromRGBO(33, 71, 185, 1),
         foregroundColor: Colors.white,
