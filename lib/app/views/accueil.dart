@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mondial_gp_test/app/Modules/annonces/controllers.dart';
 import 'package:mondial_gp_test/app/Modules/annonces/models.dart';
+import 'package:mondial_gp_test/app/Modules/details/detailsPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -381,7 +382,9 @@ class _HomePageState extends State<HomePage>
             child: SizedBox(
               width: double.infinity,
               child: FilledButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => DetailpageWidget());
+                },
                 style: FilledButton.styleFrom(
                   backgroundColor: primary,
                   padding: const EdgeInsets.symmetric(vertical: 14),
@@ -393,6 +396,7 @@ class _HomePageState extends State<HomePage>
               ),
             ),
           ),
+
           const SizedBox(height: 8),
           Container(
             width: double.infinity,
@@ -428,7 +432,7 @@ class _HomePageState extends State<HomePage>
     String city,
     String date,
     String flag, {
-    bool alignEnd = false, // conservé mais non utilisé ici
+    bool alignEnd = false,
   }) {
     return Column(
       mainAxisSize: MainAxisSize.min,

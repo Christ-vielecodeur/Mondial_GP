@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mondial_gp_test/app/routes/routes.dart';
+import 'package:mondial_gp_test/app/Modules/annonces/controllers.dart';
+import 'package:mondial_gp_test/app/Modules/QrCode/controller.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialise le QRController globalement
+  Get.put(QRController());
+
+  // Autres controllers
+  Get.put(HomeController());
 
   runApp(const MyApp());
 }
@@ -17,11 +25,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "MondialGP".tr,
       locale: const Locale("fr_FR"),
-      /*      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),*/
-      //navigatorObservers: [GetObserver(Middleware.observer)],
       initialRoute: '/welcome',
       getPages: Routes.main,
     );

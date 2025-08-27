@@ -1,4 +1,18 @@
 class Announcement {
+  final String fromCountryFlag;
+  final String fromCity;
+  final String fromDate;
+  final String toCountryFlag;
+  final String toCity;
+  final String toDate;
+  final int receivedKg;
+  final int availableKg;
+  final String pricePerKg;
+  final int senders;
+  final int requests;
+  final String expiresIn;
+  final String? contents;
+
   Announcement({
     required this.fromCountryFlag,
     required this.fromCity,
@@ -12,20 +26,6 @@ class Announcement {
     required this.senders,
     required this.requests,
     required this.expiresIn,
+    this.contents,
   });
-
-  final String fromCountryFlag;
-  final String fromCity;
-  final String fromDate;
-
-  final String toCountryFlag;
-  final String toCity;
-  final String toDate;
-
-  final int receivedKg;
-  final int availableKg;
-  final String pricePerKg;
-  final int senders;
-  final int requests;
-  final String expiresIn;
 }

@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mondial_gp_test/app/Modules/annonces/models.dart';
+import 'models.dart';
 
 class HomeController extends GetxController {
   final RxInt travelingParcels = 2.obs;
@@ -21,6 +21,7 @@ class HomeController extends GetxController {
       senders: 3,
       requests: 1,
       expiresIn: "0j 23h",
+      contents: "Vêtements, cosmétiques",
     ),
     Announcement(
       fromCountryFlag: "🇫🇷",
@@ -35,6 +36,7 @@ class HomeController extends GetxController {
       senders: 3,
       requests: 1,
       expiresIn: "5j 23h",
+      contents: "Accessoires électroniques",
     ),
   ];
 }
