@@ -72,6 +72,10 @@ flutter:
     - assets/images/vector30.svg
     - assets/images/Image20.png
     - assets/images/Image.png
+    - assets/images/valise.jpg
+    - assets/images/valise.png
+    - assets/images/flag_sn.jpg
+    - assets/images/flag_fr.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

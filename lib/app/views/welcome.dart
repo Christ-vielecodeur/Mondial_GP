@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mondial_gp_test/app/views/accueil.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -17,7 +19,7 @@ class _WelcomePageState extends State<WelcomePage> {
       body: SafeArea(
         child: Column(
           children: [
-            //  HEADER EN HAUT
+            // ---- HEADER EN HAUT ----
             const Padding(
               padding: EdgeInsets.only(top: 16.0),
               child: Text(
@@ -33,26 +35,25 @@ class _WelcomePageState extends State<WelcomePage> {
 
             const SizedBox(height: 20),
 
-            //  CONTENU CENTRÉ
+            // ---- CONTENU CENTRÉ ----
             Expanded(
               child: Column(
                 children: [
-                  const Spacer(flex: 1),
-
-                  //  TITRE
+                  const Spacer(flex: 1), // espace avant pour monter le contenu
+                  // ---- TITRE ----
                   const Text(
                     "Choix du profil",
                     style: TextStyle(
                       fontFamily: "Euclid Circular A",
                       fontSize: 18,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w700,
                       color: Color(0xFF00103E),
                     ),
                   ),
 
                   const SizedBox(height: 20),
 
-                  // OPTIONS
+                  // ---- OPTIONS ----
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Row(
@@ -78,12 +79,18 @@ class _WelcomePageState extends State<WelcomePage> {
 
                   const SizedBox(height: 20),
 
-                  //  BUTTON
+                  // ---- BUTTON ----
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: GestureDetector(
                       onTap: () {
                         debugPrint("Profil choisi : $_selectedProfile");
+
+                        // Navigation vers HomePage
+                        Get.offAll(
+                              () => const HomePage(),
+                          arguments: {"profil": _selectedProfile},
+                        );
                       },
                       child: Container(
                         width: double.infinity,
@@ -107,7 +114,9 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                   ),
 
-                  const Spacer(flex: 2),
+                  const Spacer(
+                    flex: 2,
+                  ), // espace après pour équilibrer verticalement
                 ],
               ),
             ),
@@ -117,7 +126,7 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-  //  WIDGET CARTE DE PROFIL
+  // ---- WIDGET CARTE DE PROFIL ----
   Widget _buildProfileCard({
     required String title,
     required String image,
@@ -138,14 +147,14 @@ class _WelcomePageState extends State<WelcomePage> {
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color:
-                isSelected ? const Color(0xFF2147B9) : const Color(0xFFDBE1EE),
+            isSelected ? const Color(0xFF2147B9) : const Color(0xFFDBE1EE),
             width: 2,
           ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //  IMAGE
+            // ---- IMAGE ----
             ClipRRect(
               borderRadius: const BorderRadius.vertical(
                 top: Radius.circular(12),
@@ -160,7 +169,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
             const SizedBox(height: 8),
 
-            //  TEXTE + SÉLECTEUR
+            // ---- TEXTE + SÉLECTEUR ----
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -178,20 +187,20 @@ class _WelcomePageState extends State<WelcomePage> {
                   height: 16,
                   decoration: BoxDecoration(
                     color:
-                        isSelected
-                            ? const Color(0xFF2147B9)
-                            : Colors.transparent,
+                    isSelected
+                        ? const Color(0xFF2147B9)
+                        : Colors.transparent,
                     border: Border.all(color: Colors.grey, width: 1),
                     shape: BoxShape.circle,
                   ),
                   child:
-                      isSelected
-                          ? const Icon(
-                            Icons.check,
-                            size: 12,
-                            color: Colors.white,
-                          )
-                          : null,
+                  isSelected
+                      ? const Icon(
+                    Icons.check,
+                    size: 12,
+                    color: Colors.white,
+                  )
+                      : null,
                 ),
               ],
             ),
