@@ -4,10 +4,10 @@ import 'package:mondial_gp_test/app/views/accueil.dart';
 
 class DonePage extends StatefulWidget {
   @override
-  _ConfirmationPageState createState() => _ConfirmationPageState();
+  _DonePageState createState() => _DonePageState();
 }
 
-class _ConfirmationPageState extends State<DonePage> {
+class _DonePageState extends State<DonePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -17,22 +17,27 @@ class _ConfirmationPageState extends State<DonePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildIOSStatusBar(),
-            SizedBox(height: screenHeight * 0.08),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+          child: Column(
+            children: [
+              _buildIOSStatusBar(),
+              SizedBox(height: screenHeight * 0.08),
 
-            _buildConfirmationImage(screenWidth),
-            SizedBox(height: screenHeight * 0.06),
+              _buildConfirmationImage(screenWidth),
+              SizedBox(height: screenHeight * 0.06),
 
-            _buildConfirmationText(screenWidth),
-            SizedBox(height: screenHeight * 0.05),
+              _buildConfirmationText(screenWidth),
+              SizedBox(height: screenHeight * 0.05),
 
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
-              child: _buildConfirmButton(screenWidth, screenHeight),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
+                child: _buildConfirmButton(screenWidth, screenHeight),
+              ),
+
+              SizedBox(height: screenHeight * 0.02),
+            ],
+          ),
         ),
       ),
     );

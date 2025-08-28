@@ -17,28 +17,25 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: Column(
-          children: [
-            _buildIOSStatusBar(),
-            _buildHeader(screenWidth),
-            SizedBox(height: screenHeight * 0.05),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+          child: Column(
+            children: [
+              _buildIOSStatusBar(),
+              _buildHeader(screenWidth),
+              SizedBox(height: screenHeight * 0.05),
 
-            _buildConfirmationImage(screenWidth),
-            SizedBox(height: screenHeight * 0.06),
+              _buildConfirmationImage(screenWidth),
+              SizedBox(height: screenHeight * 0.06),
 
-            _buildConfirmationText(screenWidth),
+              _buildConfirmationText(screenWidth),
 
-            Spacer(),
+              SizedBox(height: screenHeight * 0.1),
 
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: screenHeight * 0.04,
-                left: screenWidth * 0.04,
-                right: screenWidth * 0.04,
-              ),
-              child: _buildConfirmButton(screenWidth, screenHeight),
-            ),
-          ],
+              _buildConfirmButton(screenWidth, screenHeight),
+              SizedBox(height: screenHeight * 0.02),
+            ],
+          ),
         ),
       ),
     );
@@ -88,7 +85,6 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
               ),
             ),
           ),
-
           Expanded(
             child: Center(
               child: Text(
@@ -103,7 +99,6 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
               ),
             ),
           ),
-
           SizedBox(width: screenWidth * 0.11),
         ],
       ),
@@ -141,9 +136,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
             ),
             textAlign: TextAlign.center,
           ),
-
           SizedBox(height: screenWidth * 0.08),
-
           Text(
             'Contenant du colis\nVetements, cosmetiques, electronique',
             style: TextStyle(
