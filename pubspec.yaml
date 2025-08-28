@@ -76,6 +76,9 @@ flutter:
     - assets/images/valise.png
     - assets/images/flag_sn.jpg
     - assets/images/flag_fr.jpg
+    - assets/images/colis.jpg
+    - assets/images/done.jpg
+    - assets/images/done1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

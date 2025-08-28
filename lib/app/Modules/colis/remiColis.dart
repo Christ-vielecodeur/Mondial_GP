@@ -58,13 +58,13 @@ class _RemiscolisWidgetState extends State<RemiscolisPage> {
       child: Row(
         children: [
           GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: () => Get.back(),
             child: Container(
-              padding: EdgeInsets.all(screenWidth * 0.02),
-              child: SvgPicture.asset(
-                'assets/images/vector1.svg',
-                width: screenWidth * 0.06,
-                height: screenWidth * 0.06,
+              padding: EdgeInsets.all(screenWidth * 0.03),
+              child: Icon(
+                Icons.arrow_back,
+                size: screenWidth * 0.07,
+                color: Color.fromRGBO(0, 15, 62, 1),
               ),
             ),
           ),

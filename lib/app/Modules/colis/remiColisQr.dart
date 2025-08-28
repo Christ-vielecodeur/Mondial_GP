@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:get/get.dart';
+import 'package:mondial_gp_test/app/Modules/colis/confirmation.dart';
 
 class RemiscolisQRPage extends StatefulWidget {
   @override
@@ -71,13 +73,13 @@ class _RemiscolisWidgetState extends State<RemiscolisQRPage> {
       child: Row(
         children: [
           GestureDetector(
-            onTap: () => Navigator.pop(context),
+            onTap: () => Get.back(),
             child: Container(
-              padding: EdgeInsets.all(screenWidth * 0.02),
-              child: SvgPicture.asset(
-                'assets/images/vector1.svg',
-                width: screenWidth * 0.06,
-                height: screenWidth * 0.06,
+              padding: EdgeInsets.all(screenWidth * 0.03),
+              child: Icon(
+                Icons.arrow_back,
+                size: screenWidth * 0.07,
+                color: Color.fromRGBO(0, 15, 62, 1),
               ),
             ),
           ),
@@ -218,7 +220,9 @@ class _RemiscolisWidgetState extends State<RemiscolisQRPage> {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => ConfirmationPage());
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: Color.fromRGBO(33, 71, 185, 1),
           foregroundColor: Colors.white,

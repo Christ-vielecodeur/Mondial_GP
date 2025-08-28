@@ -5,6 +5,8 @@ import 'package:mondial_gp_test/app/Modules/QrCode/qrcodes.dart';
 import 'package:mondial_gp_test/app/Modules/details/detailsPage2.dart';
 import 'package:mondial_gp_test/app/Modules/details/changerStatut.dart';
 import 'package:mondial_gp_test/app/Modules/colis/remiColis.dart';
+import 'package:mondial_gp_test/app/Modules/colis/confirmation.dart';
+import 'package:mondial_gp_test/app/Modules/colis/donePage.dart';
 
 WelcomePage welcome = WelcomePage();
 DetailPage details = DetailPage();
@@ -15,3 +17,5 @@ StatusSelectionWidget changerStatut = StatusSelectionWidget(
   currentStatus: "En préparation",
 );
 RemiscolisPage remisColis = RemiscolisPage();
+ConfirmationPage confirmation = ConfirmationPage();
+DonePage donepage = DonePage();

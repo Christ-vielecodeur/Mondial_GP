@@ -19,7 +19,7 @@ class QrcodeWidget extends StatelessWidget {
 
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Color.fromRGBO(0, 15, 62, 1)),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Get.back(),
         ),
         title: Text(
           'Code généré',
