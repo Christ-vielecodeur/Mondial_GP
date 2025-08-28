@@ -2,17 +2,60 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mondial_gp_test/app/Modules/details/changerStatut.dart';
 import 'package:mondial_gp_test/app/Modules/colis/remiColis.dart';
-import 'package:get/get.dart ';
+import 'package:get/get.dart';
 
 class Dtail2Pages extends StatefulWidget {
   @override
   _Dtail2WidgetState createState() => _Dtail2WidgetState();
 }
 
-class _Dtail2WidgetState extends State<Dtail2Pages> {
+class _Dtail2WidgetState extends State<Dtail2Pages>
+    with TickerProviderStateMixin {
   int _selectedTab = 0;
+  String _currentStatus = "En préparation";
+  AnimationController? _statusAnimationController;
+  Animation<Color?>? _statusColorAnimation;
 
   @override
+  void initState() {
+    super.initState();
+
+    _statusAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+
+    _statusColorAnimation = ColorTween(
+      begin: _getStatusColor(_currentStatus),
+      end: _getStatusColor(_currentStatus),
+    ).animate(_statusAnimationController!);
+  }
+
+  @override
+  void dispose() {
+    _statusAnimationController?.dispose();
+    super.dispose();
+  }
+
+  void _animateStatusChange(String newStatus) {
+    final oldColor = _getStatusColor(_currentStatus);
+    final newColor = _getStatusColor(newStatus);
+
+    _statusColorAnimation = ColorTween(begin: oldColor, end: newColor).animate(
+      CurvedAnimation(
+        parent: _statusAnimationController!,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    _statusAnimationController!.reset();
+    _statusAnimationController!.forward().then((_) {
+      setState(() {
+        _currentStatus = newStatus;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -215,8 +258,6 @@ class _Dtail2WidgetState extends State<Dtail2Pages> {
     );
   }
 
-  String _currentStatus = "En préparation";
-
   Color _getStatusColor(String status) {
     switch (status) {
       case "En préparation":
@@ -258,40 +299,53 @@ class _Dtail2WidgetState extends State<Dtail2Pages> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: _getStatusColor(_currentStatus),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 6,
-                        height: 6,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(6)),
-                        ),
+
+                AnimatedBuilder(
+                  animation: _statusAnimationController!,
+                  builder: (context, child) {
+                    return Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
                       ),
-                      SizedBox(width: 6),
-                      Text(
-                        _currentStatus,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Euclid Circular A',
-                          fontSize: 12,
-                        ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color:
+                            _statusColorAnimation?.value ??
+                            _getStatusColor(_currentStatus),
                       ),
-                      SizedBox(width: 4),
-                      Icon(
-                        Icons.keyboard_arrow_down,
-                        size: 16,
-                        color: Colors.white,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: 6,
+                            height: 6,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(6),
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 6),
+                          Text(
+                            _currentStatus,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Euclid Circular A',
+                              fontSize: 12,
+                            ),
+                          ),
+                          SizedBox(width: 4),
+                          Icon(
+                            Icons.keyboard_arrow_down,
+                            size: 16,
+                            color: Colors.white,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -303,34 +357,29 @@ class _Dtail2WidgetState extends State<Dtail2Pages> {
                   padding: EdgeInsets.only(top: 8),
                   child: GestureDetector(
                     onTap: () {
-                      print("Procéder à la remise");
+                      Get.to(() => RemiscolisPage());
                     },
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.to(() => RemiscolisPage());
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Text(
-                            "Procéder à la remise",
-                            style: TextStyle(
-                              color: Color.fromRGBO(33, 71, 185, 1),
-                              fontFamily: 'Euclid Circular A',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              decoration: TextDecoration.underline,
-                              decorationColor: Color.fromRGBO(33, 71, 185, 1),
-                            ),
-                          ),
-                          SizedBox(width: 4),
-                          Icon(
-                            Icons.arrow_forward,
-                            size: 14,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: const [
+                        Text(
+                          "Procéder à la remise",
+                          style: TextStyle(
                             color: Color.fromRGBO(33, 71, 185, 1),
+                            fontFamily: 'Euclid Circular A',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Color.fromRGBO(33, 71, 185, 1),
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(width: 4),
+                        Icon(
+                          Icons.arrow_forward,
+                          size: 14,
+                          color: Color.fromRGBO(33, 71, 185, 1),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -348,9 +397,7 @@ class _Dtail2WidgetState extends State<Dtail2Pages> {
           (context) => StatusSelectionWidget(currentStatus: _currentStatus),
     ).then((selectedStatus) {
       if (selectedStatus != null) {
-        setState(() {
-          _currentStatus = selectedStatus;
-        });
+        _animateStatusChange(selectedStatus);
         print("Nouveau statut: $selectedStatus");
       }
     });
