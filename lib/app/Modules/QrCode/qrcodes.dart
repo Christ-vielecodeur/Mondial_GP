@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
+import 'package:mondial_gp_test/app/widgets/colors.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:mondial_gp_test/app/Modules/QrCode/controller.dart';
 
@@ -12,7 +13,7 @@ class QrcodeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

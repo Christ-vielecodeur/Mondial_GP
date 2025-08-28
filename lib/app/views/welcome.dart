@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mondial_gp_test/app/views/accueil.dart';
+import 'package:mondial_gp_test/app/widgets/blue_button.dart';
+import 'package:mondial_gp_test/app/widgets/colors.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -15,7 +17,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -27,7 +29,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   fontFamily: "Sen",
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF00103E),
+                  color: AppColors.darkText,
                 ),
               ),
             ),
@@ -45,7 +47,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       fontFamily: "Euclid Circular A",
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF00103E),
+                      color: AppColors.darkText,
                     ),
                   ),
 
@@ -78,34 +80,15 @@ class _WelcomePageState extends State<WelcomePage> {
 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: GestureDetector(
-                      onTap: () {
+                    child: BlueButton(
+                      text: "Basculer",
+                      onPressed: () {
                         debugPrint("Profil choisi : $_selectedProfile");
-
                         Get.offAll(
                           () => const HomePage(),
                           arguments: {"profil": _selectedProfile},
                         );
                       },
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF2147B9),
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            "Basculer",
-                            style: TextStyle(
-                              fontFamily: "Euclid Circular A",
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
                     ),
                   ),
 
@@ -138,8 +121,7 @@ class _WelcomePageState extends State<WelcomePage> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color:
-                isSelected ? const Color(0xFF2147B9) : const Color(0xFFDBE1EE),
+            color: isSelected ? AppColors.primaryBlue : AppColors.white,
             width: 2,
           ),
         ),
@@ -169,7 +151,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     fontFamily: "Euclid Circular A",
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: Colors.black,
+                    color: AppColors.black,
                   ),
                 ),
                 Container(
@@ -177,10 +159,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   height: 16,
                   decoration: BoxDecoration(
                     color:
-                        isSelected
-                            ? const Color(0xFF2147B9)
-                            : Colors.transparent,
-                    border: Border.all(color: Colors.grey, width: 1),
+                        isSelected ? AppColors.primaryBlue : Colors.transparent,
+                    border: Border.all(color: AppColors.grey, width: 1),
                     shape: BoxShape.circle,
                   ),
                   child:
@@ -188,7 +168,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           ? const Icon(
                             Icons.check,
                             size: 12,
-                            color: Colors.white,
+                            color: AppColors.white,
                           )
                           : null,
                 ),

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:mondial_gp_test/app/Modules/annonces/controllers.dart';
 import 'package:mondial_gp_test/app/Modules/annonces/models.dart';
 import 'package:mondial_gp_test/app/Modules/details/detailsPage.dart';
+import 'package:mondial_gp_test/app/widgets/blue_button.dart';
+import 'package:mondial_gp_test/app/widgets/colors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,9 +33,9 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    final Color primary = const Color(0xFF2444D6);
-    final Color lightBlue = const Color(0xFFE9EEFF);
-    final Color cardBg = Colors.white;
+    final Color primary = AppColors.primaryBlue;
+    final Color lightBlue = AppColors.white;
+    final Color cardBg = AppColors.white;
     final EdgeInsets pagePad = const EdgeInsets.symmetric(
       horizontal: 16,
       vertical: 8,
@@ -83,7 +85,7 @@ class _HomePageState extends State<HomePage>
           currentIndex: c.bottomIndex.value,
           onTap: (i) => c.bottomIndex.value = i,
           selectedItemColor: primary,
-          unselectedItemColor: const Color(0xFF9AA3B2),
+          unselectedItemColor: AppColors.grey1,
           type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
@@ -239,14 +241,14 @@ class _HomePageState extends State<HomePage>
           decoration: BoxDecoration(
             color: Colors.transparent,
             border: Border(
-              bottom: BorderSide(color: Colors.black.withOpacity(0.06)),
+              bottom: BorderSide(color: AppColors.black.withOpacity(0.06)),
             ),
           ),
           child: TabBar(
             controller: tabController,
             indicatorColor: primary,
             labelColor: primary,
-            unselectedLabelColor: const Color(0xFF9AA3B2),
+            unselectedLabelColor: AppColors.grey1,
             labelStyle: const TextStyle(fontWeight: FontWeight.w700),
             tabs: const [
               Tab(text: "Annonces actives"),
@@ -380,21 +382,11 @@ class _HomePageState extends State<HomePage>
           const SizedBox(height: 12),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: SizedBox(
-              width: double.infinity,
-              child: FilledButton(
-                onPressed: () {
-                  Get.to(() => DetailPage());
-                },
-                style: FilledButton.styleFrom(
-                  backgroundColor: primary,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(22),
-                  ),
-                ),
-                child: const Text("Plus de détails"),
-              ),
+            child: BlueButton(
+              text: "Plus de détails",
+              onPressed: () {
+                Get.to(() => DetailPage());
+              },
             ),
           ),
 
@@ -412,7 +404,7 @@ class _HomePageState extends State<HomePage>
                 Icon(
                   Icons.access_time_rounded,
                   size: 18,
-                  color: Colors.grey.shade600,
+                  color: AppColors.grey.shade600,
                 ),
                 const SizedBox(width: 6),
                 Text(
