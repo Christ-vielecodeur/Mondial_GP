@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mondial_gp_test/app/Modules/details/changerStatut.dart';
+import 'package:mondial_gp_test/app/Modules/colis/remiColis.dart';
 import 'package:get/get.dart ';
 
 class Dtail2Pages extends StatefulWidget {
@@ -303,27 +304,32 @@ class _Dtail2WidgetState extends State<Dtail2Pages> {
                     onTap: () {
                       print("Procéder à la remise");
                     },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "Procéder à la remise",
-                          style: TextStyle(
-                            color: Color.fromRGBO(33, 71, 185, 1),
-                            fontFamily: 'Euclid Circular A',
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            decoration: TextDecoration.underline,
-                            decorationColor: Color.fromRGBO(33, 71, 185, 1),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(() => RemiscolisPage());
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Text(
+                            "Procéder à la remise",
+                            style: TextStyle(
+                              color: Color.fromRGBO(33, 71, 185, 1),
+                              fontFamily: 'Euclid Circular A',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.underline,
+                              decorationColor: Color.fromRGBO(33, 71, 185, 1),
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 4),
-                        Icon(
-                          Icons.arrow_forward,
-                          size: 14,
-                          color: Color.fromRGBO(33, 71, 185, 1),
-                        ),
-                      ],
+                          SizedBox(width: 4),
+                          Icon(
+                            Icons.arrow_forward,
+                            size: 14,
+                            color: Color.fromRGBO(33, 71, 185, 1),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

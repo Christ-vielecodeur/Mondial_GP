@@ -5,6 +5,7 @@ import 'package:mondial_gp_test/app/Modules/details/detailsPage.dart';
 import 'package:mondial_gp_test/app/Modules/QrCode/qrcodes.dart';
 import 'package:mondial_gp_test/app/Modules/details/detailsPage2.dart';
 import 'package:mondial_gp_test/app/Modules/details/changerStatut.dart';
+import 'package:mondial_gp_test/app/Modules/colis/remiColis.dart';
 
 class Routes {
   static const String welcome = '/welcome';
@@ -13,6 +14,7 @@ class Routes {
   static const String details2 = '/details2';
   static const String qrcode = '/qrcode';
   static const String changerStatut = '/changerStatut';
+  static const String remisColis = '/remisColis';
 
   static final main = [
     GetPage(
@@ -43,6 +45,11 @@ class Routes {
     GetPage(
       name: changerStatut,
       page: () => StatusSelectionWidget(currentStatus: "En préparation"),
+      transition: Transition.downToUp,
+    ),
+    GetPage(
+      name: remisColis,
+      page: () => RemiscolisPage(),
       transition: Transition.downToUp,
     ),
   ];

@@ -4,6 +4,7 @@ import 'package:mondial_gp_test/app/Modules/details/detailsPage.dart';
 import 'package:mondial_gp_test/app/Modules/QrCode/qrcodes.dart';
 import 'package:mondial_gp_test/app/Modules/details/detailsPage2.dart';
 import 'package:mondial_gp_test/app/Modules/details/changerStatut.dart';
+import 'package:mondial_gp_test/app/Modules/colis/remiColis.dart';
 
 WelcomePage welcome = WelcomePage();
 DetailPage details = DetailPage();
@@ -13,3 +14,4 @@ HomePage accueil = HomePage();
 StatusSelectionWidget changerStatut = StatusSelectionWidget(
   currentStatus: "En préparation",
 );
+RemiscolisPage remisColis = RemiscolisPage();
