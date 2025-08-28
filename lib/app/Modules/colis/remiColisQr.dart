@@ -38,6 +38,7 @@ class _RemiscolisWidgetState extends State<RemiscolisQRPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              _buildIOSStatusBar(),
               _buildHeader(screenWidth),
               SizedBox(height: screenHeight * 0.03),
 
@@ -55,7 +56,7 @@ class _RemiscolisWidgetState extends State<RemiscolisQRPage> {
 
               // Champ de texte pour code manuel
               _buildCodeInputField(screenWidth),
-              SizedBox(height: screenHeight * 0.25),
+              SizedBox(height: screenHeight * 0.20),
 
               // Bouton Suivant
               _buildNextButton(screenWidth, screenHeight),
@@ -63,6 +64,34 @@ class _RemiscolisWidgetState extends State<RemiscolisQRPage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildIOSStatusBar() {
+    return Container(
+      height: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '9:41',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+          ),
+          Row(
+            children: [
+              Icon(Icons.signal_cellular_4_bar, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.wifi, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.battery_full, size: 14),
+            ],
+          ),
+        ],
       ),
     );
   }

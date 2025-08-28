@@ -24,6 +24,7 @@ class _Dtail2WidgetState extends State<Dtail2Pages> {
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
               child: _buildIOSStatusBar(),
             ),
+            SizedBox(height: 20),
 
             Expanded(
               child: SingleChildScrollView(

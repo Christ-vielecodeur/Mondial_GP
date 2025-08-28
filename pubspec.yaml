@@ -79,6 +79,7 @@ flutter:
     - assets/images/colis.jpg
     - assets/images/done.jpg
     - assets/images/done1.png
+    - assets/images/vetements.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -37,17 +37,47 @@ class _RemiscolisWidgetState extends State<RemiscolisPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              _buildIOSStatusBar(),
+              SizedBox(height: 20),
               _buildHeader(screenWidth),
               SizedBox(height: screenHeight * 0.03),
               _buildSenderCard(screenWidth),
               SizedBox(height: screenHeight * 0.03),
               _buildPhotoCard(screenWidth),
-              SizedBox(height: screenHeight * 0.05),
+              SizedBox(height: screenHeight * 0.10),
               _buildNextButton(screenWidth, screenHeight),
               SizedBox(height: screenHeight * 0.02),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildIOSStatusBar() {
+    return Container(
+      height: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '9:41',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+          ),
+          Row(
+            children: [
+              Icon(Icons.signal_cellular_4_bar, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.wifi, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.battery_full, size: 14),
+            ],
+          ),
+        ],
       ),
     );
   }

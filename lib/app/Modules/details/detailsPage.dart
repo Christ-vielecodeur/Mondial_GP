@@ -25,6 +25,7 @@ class DetailPage extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                 child: _buildIOSStatusBar(),
               ),
+              SizedBox(height: 20),
               _buildAppBar(),
               SizedBox(height: 16),
               _buildMainCard(announcement, announcementIndex),
@@ -161,21 +162,32 @@ class DetailPage extends StatelessWidget {
                 onTap: () {
                   Get.to(() => QrcodeWidget());
                 },
-                child: Text(
-                  'Générez le code QR et le code PIN',
-                  style: TextStyle(
-                    color: Color.fromRGBO(33, 71, 185, 1),
-                    fontSize: 14,
-                    fontFamily: 'Euclid Circular A',
-                    fontWeight: FontWeight.normal,
-                    height: 1.5,
-                  ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      'Générez le code QR et le code PIN',
+                      style: TextStyle(
+                        color: Color.fromRGBO(33, 71, 185, 1),
+                        fontSize: 14,
+                        fontFamily: 'Euclid Circular A',
+                        fontWeight: FontWeight.normal,
+                        height: 1.5,
+                      ),
+                    ),
+                    SizedBox(width: 6),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 14,
+                      color: Color.fromRGBO(33, 71, 185, 1),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 2),
               Container(
                 height: 2,
-                width: 220,
+                width: 240, // j’ai élargi un peu pour inclure la flèche
                 color: Color.fromRGBO(33, 71, 185, 1),
               ),
             ],
@@ -339,13 +351,14 @@ class DetailPage extends StatelessWidget {
               color: Color.fromRGBO(0, 15, 62, 1),
               fontSize: 16,
               fontFamily: 'Euclid Circular A',
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.w500,
               height: 1.5,
             ),
           ),
           SizedBox(height: 16),
           Row(
             children: [
+              // Avatar
               Container(
                 width: 47,
                 height: 47,
@@ -355,7 +368,9 @@ class DetailPage extends StatelessWidget {
                 ),
                 child: Icon(Icons.person, size: 30, color: Colors.grey[600]),
               ),
-              SizedBox(width: 16),
+              SizedBox(width: 12),
+
+              // Informations du porteur
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -366,72 +381,113 @@ class DetailPage extends StatelessWidget {
                         color: Color.fromRGBO(0, 15, 62, 1),
                         fontSize: 16,
                         fontFamily: 'Euclid Circular A',
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.w500,
                         height: 1.5,
                       ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
-                    SizedBox(height: 8),
-                    Row(
-                      children: [
-                        Row(
+                    SizedBox(height: 6),
+
+                    // Ligne inférieure (étoiles, certifié, message)
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        final isSmallScreen = constraints.maxWidth < 350;
+
+                        return Row(
                           children: [
-                            Icon(Icons.star, size: 14, color: Colors.amber),
-                            SizedBox(width: 4),
-                            Text(
-                              '5 (12 avis)',
-                              style: TextStyle(
-                                color: Color.fromRGBO(0, 15, 62, 1),
-                                fontSize: 12,
-                                fontFamily: 'Euclid Circular A',
-                                fontWeight: FontWeight.normal,
-                                height: 1.5,
+                            // Note et avis
+                            Flexible(
+                              flex: 2,
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    size: 14,
+                                    color: Colors.amber,
+                                  ),
+                                  SizedBox(width: 4),
+                                  Flexible(
+                                    child: Text(
+                                      isSmallScreen ? '5 (12)' : '5 (12 avis)',
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(0, 15, 62, 1),
+                                        fontSize: 12,
+                                        fontFamily: 'Euclid Circular A',
+                                        fontWeight: FontWeight.normal,
+                                        height: 1.5,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            SizedBox(width: 8),
+
+                            // Badge Certifié
+                            Flexible(
+                              flex: isSmallScreen ? 2 : 1,
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: isSmallScreen ? 6 : 8,
+                                  vertical: 2,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(240, 240, 240, 1),
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                                child: Text(
+                                  'Certifié',
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(102, 102, 102, 1),
+                                    fontSize: isSmallScreen ? 10 : 12,
+                                    fontFamily: 'Euclid Circular A',
+                                    fontWeight: FontWeight.normal,
+                                    height: 1.5,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+
+                            SizedBox(width: 8),
+
+                            // Bouton Message
+                            Flexible(
+                              flex: isSmallScreen ? 3 : 2,
+                              child: Container(
+                                constraints: BoxConstraints(
+                                  minWidth: isSmallScreen ? 70 : 80,
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: isSmallScreen ? 8 : 12,
+                                  vertical: isSmallScreen ? 4 : 6,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Color.fromRGBO(33, 71, 185, 1),
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Message',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: isSmallScreen ? 11 : 12,
+                                      fontFamily: 'Euclid Circular A',
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.5,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
                               ),
                             ),
                           ],
-                        ),
-                        SizedBox(width: 8),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 4,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(240, 240, 240, 1),
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                          child: Text(
-                            'Certifié',
-                            style: TextStyle(
-                              color: Color.fromRGBO(102, 102, 102, 1),
-                              fontSize: 12,
-                              fontFamily: 'Euclid Circular A',
-                              fontWeight: FontWeight.normal,
-                              height: 1.5,
-                            ),
-                          ),
-                        ),
-                        Spacer(),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Color.fromRGBO(33, 71, 185, 1),
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          child: Text(
-                            'Message',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontFamily: 'Euclid Circular A',
-                              fontWeight: FontWeight.normal,
-                              height: 1.5,
-                            ),
-                          ),
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -530,8 +586,11 @@ class DetailPage extends StatelessWidget {
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(9.4),
         border: Border.all(color: Colors.grey[300]!),
+        image: DecorationImage(
+          image: AssetImage("assets/images/vetements.jpg"), // ton image
+          fit: BoxFit.cover,
+        ),
       ),
-      child: Icon(Icons.photo, size: 40, color: Colors.grey[400]),
     );
   }
 

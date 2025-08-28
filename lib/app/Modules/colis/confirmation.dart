@@ -19,6 +19,7 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
       body: SafeArea(
         child: Column(
           children: [
+            _buildIOSStatusBar(),
             _buildHeader(screenWidth),
             SizedBox(height: screenHeight * 0.05),
 
@@ -39,6 +40,34 @@ class _ConfirmationPageState extends State<ConfirmationPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildIOSStatusBar() {
+    return Container(
+      height: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '9:41',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Colors.black,
+            ),
+          ),
+          Row(
+            children: [
+              Icon(Icons.signal_cellular_4_bar, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.wifi, size: 14),
+              SizedBox(width: 4),
+              Icon(Icons.battery_full, size: 14),
+            ],
+          ),
+        ],
       ),
     );
   }
