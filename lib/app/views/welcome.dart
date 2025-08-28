@@ -10,7 +10,7 @@ class WelcomePage extends StatefulWidget {
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-  String _selectedProfile = "demandeur";
+  String _selectedProfile = "transporteur";
 
   @override
   Widget build(BuildContext context) {

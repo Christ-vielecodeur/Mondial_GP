@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage>
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
               child: _buildIOSStatusBar(),
             ),
+            const SizedBox(height: 20),
             Padding(padding: pagePad, child: _buildHeader(primary)),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -464,12 +465,16 @@ class _HomePageState extends State<HomePage>
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(child: _dash()),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 6),
-            child: Icon(
-              Icons.flight_rounded,
-              size: 18,
-              color: Color(0xFF2444D6),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6),
+            child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.rotationY(3.1416),
+              child: const Icon(
+                Icons.flight_rounded,
+                size: 18,
+                color: Color(0xFF2444D6),
+              ),
             ),
           ),
           Expanded(child: _dash()),
